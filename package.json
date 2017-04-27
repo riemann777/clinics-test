@@ -1,0 +1,26 @@
+{
+  "name": "clinics-test",
+  "version": "1.0.0",
+  "description": "home office interview: clinics test",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "cp config.test.json config.json && mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "placeholder"
+  },
+  "author": "Robert Dabin",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.3.0"
+  },
+  "dependencies": {
+    "good": "^7.1.0",
+    "good-console": "^6.4.0",
+    "good-squeeze": "^5.0.2",
+    "lodash": "^4.17.4"
+  }
+}

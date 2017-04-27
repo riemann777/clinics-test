@@ -1,0 +1,9 @@
+logs
+*.log
+npm-debug.log*
+node_modules/
+
+## Directory-based project format:
+.idea/
+
+config.json
