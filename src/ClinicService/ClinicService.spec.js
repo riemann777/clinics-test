@@ -24,4 +24,37 @@ describe("ClinicService", () => {
 
     });
 
+    it("should return data in correct format", () => {
+
+        const expectedResults = {
+            results: [{
+                organisation_id: "40957",
+                name: "Dodds Clinic"
+            }, {
+                organisation_id: "40755",
+                name: "Battersea Clinic"
+            }]
+        };
+
+        clinicService.http.response = {
+            "success":true,
+            "result":[{
+                "partial_postcode":"SW1",
+                "organisation_id":"40957",
+                "name":"Dodds Clinic"
+            },{
+                "partial_postcode":"SW1",
+                "organisation_id":"40755",
+                "name":"Battersea Clinic"
+            }]
+        };
+
+        return clinicService.getAllByOutwardCode("mockCode").then((clinics) => {
+
+            expect(clinics).to.deep.equal(expectedResults);
+
+        });
+
+    });
+
 });
