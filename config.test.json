@@ -3,6 +3,10 @@
   "Server": {
     "port": 3000,
     "host": "localhost"
+  },
+
+  "ClinicService": {
+    "endpoint": "http://mock.endpoint"
   }
 
 }

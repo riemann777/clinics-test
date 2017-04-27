@@ -1,0 +1,7 @@
+{
+
+  "ClinicService": {
+    "endpoint": "data/api/service/health/clinics/partial_postcode"
+  }
+
+}
