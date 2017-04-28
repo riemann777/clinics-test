@@ -37,6 +37,7 @@ describe("ClinicService", () => {
             return clinicService.getAllByOutwardCode(mockPostcode).then(() => {
 
                 expect(getSpy.args[0][0]).to.equal("http://mock.endpoint/partial_postcode?partial_postcode=SW1");
+                expect(getSpy.args[0][1]).to.deep.equal({ json: true });
 
             });
 

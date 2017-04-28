@@ -1,13 +1,40 @@
-var express = require('express');
-var app = express();
 
-app.get('/clinics/postcode/:postcode', function (req, res) {
-    res.send('Hello World! ' + req.params.postcode)
-});
+const ClinicService = require("../src/ClinicService/ClinicService"),
+    Http = require("../src/Http/Http"),
+    service = new ClinicService(new Http());
 
-app.listen(3000, function () {
-    console.log('Example app listening on port 3000!')
-});
+service.getAllByOutwardCode("SE1")
+
+
+
+// var rp = require('request-promise');
+//
+// rp({
+//     uri: 'https://data.gov.uk/data/api/service/health/clinics/partial_postcode?partial_postcode=SE1',
+//     headers: {
+//         'User-Agent': 'Request-Promise'
+//     },
+//     json: true
+//
+// }).then(function (json) {
+//     // Process html...
+//     console.log(json)
+//
+// }).catch(function (err) {
+//     // Crawling failed...
+//     console.log(err)
+// });
+
+// var express = require('express');
+// var app = express();
+//
+// app.get('/clinics/postcode/:postcode', function (req, res) {
+//     res.send('Hello World! ' + req.params.postcode)
+// });
+//
+// app.listen(3000, function () {
+//     console.log('Example app listening on port 3000!')
+// });
 
 // const Hapi = require('hapi');
 //

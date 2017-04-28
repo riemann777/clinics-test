@@ -12,14 +12,15 @@ module.exports = class ClinicService {
 
     getAllByOutwardCode(postCode) {
 
-        return this.http.get(this.config.endpoint + "/partial_postcode?partial_postcode=" + postCode.outwardCode)
-            .then((response) => {
+        const url = this.config.endpoint + "/partial_postcode?partial_postcode=" + postCode.outwardCode;
 
-                let exactPostCodeResults = this.getExactPostcodeMatches(response.result, postCode.fullcode);
+        return this.http.get(url, {json: true}).then((response) => {
 
-                return this.formatResults(exactPostCodeResults);
+            let exactPostCodeResults = this.getExactPostcodeMatches(response.result, postCode.fullcode);
 
-            });
+            return this.formatResults(exactPostCodeResults);
+
+        });
 
     }
 
