@@ -1,5 +1,9 @@
-// TODO: use ClinicService to fetch clinics
+const ClinicService = require("../ClinicService/ClinicService"),
+    Http = require("../Http/Http"),
+    clinicService = new ClinicService(new Http()),
+    _ = require("lodash");
 
+// TODO: handler should be tested
 module.exports = {
     method: 'GET',
     path: '/clinics/postcode/{postcode}',
@@ -9,7 +13,18 @@ module.exports = {
         // TODO: in PostCode handle lower case -> uppercase all?
         // TODO: set response as json
 
-        response(JSON.stringify({ "mock": "clinics" }));
+        let postcodeString = request.params.postcode,
+            postcode = {
+                fullcode: _.toUpper(postcodeString),
+                outwardCode: _.toUpper(postcodeString.split(" ")[0])
+            };
+
+        return clinicService.getAllByOutwardCode(postcode).then((clinics) => {
+
+            return response(clinics);
+
+        });
+
 
     }
 };

@@ -3,7 +3,7 @@ const ClinicService = require("../src/ClinicService/ClinicService"),
     Http = require("../src/Http/Http"),
     service = new ClinicService(new Http());
 
-service.getAllByOutwardCode("SE1")
+service.getAllByOutwardCode({ outwardCode: "SE1", fullcode: "SE1 7RJ" }).then(console.log);
 
 
 

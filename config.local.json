@@ -5,7 +5,7 @@
   },
 
   "ClinicService": {
-    "endpoint": "https://data.gov.ukdata/api/service/health/clinics/partial_postcode"
+    "endpoint": "https://data.gov.uk/data/api/service/health/clinics"
   }
 
 }

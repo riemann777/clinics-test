@@ -14,7 +14,7 @@ module.exports = class ClinicService {
 
         const url = this.config.endpoint + "/partial_postcode?partial_postcode=" + postCode.outwardCode;
 
-        return this.http.get(url, {json: true}).then((response) => {
+        return this.http.get(url, { json: true }).then((response) => {
 
             let exactPostCodeResults = this.getExactPostcodeMatches(response.result, postCode.fullcode);
 
