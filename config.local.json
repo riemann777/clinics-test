@@ -1,4 +1,8 @@
 {
+  "Server": {
+    "port": 1337,
+    "host": "localhost"
+  },
 
   "ClinicService": {
     "endpoint": "data/api/service/health/clinics/partial_postcode"

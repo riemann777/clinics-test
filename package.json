@@ -4,7 +4,7 @@
   "description": "home office interview: clinics test",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "cp config.local.json config.json && node index.js",
     "test": "cp config.test.json config.json && mocha"
   },
   "repository": {

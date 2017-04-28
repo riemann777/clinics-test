@@ -1,6 +1,10 @@
-const Server = require("./src/Server/Server");
+const Server = require("./src/Server/Server"),
+    routes = require("./src/Routes/routes"),
+    RoutesProvider = require("./src/Server/RoutesProvider/RoutesProvider");
 
-const server = new Server();
+
+const routesProvider = new RoutesProvider(routes),
+    server = new Server(routesProvider);
 
 server.start((err) => {
 
