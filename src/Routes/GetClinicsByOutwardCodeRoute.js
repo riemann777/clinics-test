@@ -7,7 +7,7 @@ module.exports = {
 
         // TODO: set response as json
 
-        response(JSON.stringify({ "mock": "clinics" });
+        response(JSON.stringify({ "mock": "clinics" }));
 
     }
 };
