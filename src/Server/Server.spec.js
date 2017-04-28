@@ -5,9 +5,24 @@ const expect = require("chai").expect,
 
 
 const routesProvider = new RoutesProvider([
-        {}
+        {
+            method: 'GET',
+            path: '/mock/route',
+            handler: () => {}
+        }
     ]),
-    server = new Server(routesProvider);
+    hapiProvider = {
+        get: () => {
+
+            return {
+                connection: () => {},
+                register: () => {},
+                start: () => {},
+                route: () => {}
+            }
+        }
+    },
+    server = new Server(routesProvider, hapiProvider);
 
 describe("Server", () => {
 
@@ -39,11 +54,53 @@ describe("Server", () => {
 
     });
 
-    xdescribe("when starting instance of server", () => {
+    describe("when starting instance of server", () => {
 
-        it("should ", () => {
+        it("should set hapi server connection", () => {
 
-            expect(true).to.equal(false);
+            let setConnectionSpy = sinon.spy(server.hapiServer, "connection");
+
+            server.start(() => {
+
+                expect(setConnectionSpy.calledOnce).to.equal(true);
+                expect(setConnectionSpy.args[0][0]).to.deep.equal({
+                    "host": "localhost",
+                    "port": 1337
+                });
+
+            });
+
+
+        });
+
+        it("should initialise provided routes", () => {
+
+            let setRouteSpy = sinon.spy(server.hapiServer, "route");
+
+            server.start(() => {
+
+                expect(setRouteSpy.calledOnce).to.equal(true);
+                expect(setRouteSpy.args[0][0]).to.deep.equal({
+                    method: 'GET',
+                    path: '/mock/route',
+                    handler: () => {
+                    }
+                });
+
+            });
+
+        });
+
+        // TODO: ensure hapi only started once routes initialised
+        it("should start hapi server once routes are initialised", () => {
+
+            let startSpy = sinon.spy(server.hapiServer, "start");
+
+            server.start(() => {
+
+                expect(startSpy.calledOnce).to.equal(true);
+
+            });
 
         });
 

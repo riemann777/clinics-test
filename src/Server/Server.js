@@ -1,16 +1,15 @@
 const config = require("../../config.json").Server,
     routes = require("../Routes/routes"),
-    Hapi = require("hapi"),
     Good = require('good'),
     _ = require("lodash");
 
 
 module.exports = class Server {
 
-    constructor(routesProvider) {
+    constructor(routesProvider, hapiProvider) {
 
         this.routesProvider = routesProvider
-        this.hapiServer = new Hapi.Server();
+        this.hapiServer = hapiProvider.get();
 
         this.config = config;
 
@@ -46,6 +45,7 @@ module.exports = class Server {
             this.hapiServer.start(callback);
 
         });
+
     }
 
     initializeRoutes(server) {
