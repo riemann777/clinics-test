@@ -41,10 +41,31 @@ module.exports = class ClinicService {
             results: _.map(clinicData, (clinic) => {
                 return {
                     organisation_id: clinic.organisation_id,
-                    name: clinic.name
+                    name: clinic.name,
+                    address: this.getAddress(clinic)
                 }
             })
         };
+    }
+
+    getAddress(clinic) {
+
+        const addressFields = ["address1", "address2", "address3", "postcode", "city"];
+
+        let name = clinic.name ? clinic.name + " " : "",
+            addresses = _.reduce(addressFields, (addresses, fieldName) => {
+
+                if (clinic[fieldName]) {
+
+                    addresses.push(clinic[fieldName]);
+                }
+
+                return addresses;
+
+            }, []);
+
+        return name + "(" + addresses.join(", ") + ")";
+
     }
 
 };
