@@ -1,3 +1,3 @@
-# Home Office clinics test #
+# Clinics test #
 
 to start service: `npm start`
